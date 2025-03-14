@@ -3,79 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lenny Faces - Infinite Scroll</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .lenny-container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-        }
-        .loading {
-            display: none;
-            font-size: 18px;
-            color: gray;
-            margin: 20px 0;
-        }
-    </style>
+    <title>Doodle jump unblocked</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<meta name="google-site-verification" content="1prkdKNd1M6kw2txl_JcKt38zFJKsnyjpjZWEcTCR2k" />
 </head>
-<body>
+<body class="bg-black text-white">
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 bg-gray-900">
+        <h1 class="text-2xl font-bold">GameSite</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="hover:text-gray-300">Games</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="#" class="hover:text-gray-300">Privacy</a></li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="flex flex-col md:flex-row p-4">
+        <!-- Left Ad Space (Hidden on Small Screens) -->
+        <aside class="hidden md:flex w-1/6 bg-gray-800 items-center justify-center p-4">
+            <span class="text-gray-400">Ad Space</span>
+        </aside>
 
-    <h1>😃 Welcome to Lenny Faces 😃</h1>
-    <div class="lenny-container" id="content">
-        <!-- First page content loads here -->
-    </div>
+        <!-- Game Section -->
+        <section class="flex-1 flex flex-col items-center">
+            <div class="w-full max-w-4xl aspect-[16/9] border-2 border-gray-600 rounded-lg overflow-hidden">
+                <iframe id="gameFrame" src="https://keyboard-test.space" 
+                    class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Title & Fullscreen Button -->
+            <div class="flex justify-between w-full max-w-4xl mt-4 px-4">
+                <h2 class="text-xl font-bold">Monkey Mart</h2>
+                <button onclick="goFullscreen()" class="bg-gray-700 px-4 py-2 rounded">Fullscreen</button>
+            </div>
+        </section>
 
-    <div class="loading" id="loading">🔄 Loading more faces...</div>
+        <!-- Right Ad Space (Hidden on Small Screens) -->
+        <aside class="hidden md:flex w-1/6 bg-gray-800 items-center justify-center p-4">
+            <span class="text-gray-400">Ad Space</span>
+        </aside>
+    </main>
 
     <script>
-        let pageIndex = 0; // Start index
-        let isLoading = false; // Prevent multiple requests
-
-        // Completely custom page names
-        const pageNames = [
-            "lenny-home.html",
-            "lenny-fun.html",
-            "lenny-express.html"
-                    ];
-
-        const contentDiv = document.getElementById('content');
-        const loadingDiv = document.getElementById('loading');
-
-        // Function to load content
-        async function loadMoreContent() {
-            if (isLoading || pageIndex >= pageNames.length) return; // Stop if all pages loaded
-            isLoading = true;
-            loadingDiv.style.display = "block"; // Show loading animation
-
-            try {
-                let response = await fetch(pageNames[pageIndex]); // Fetch next custom page
-                if (!response.ok) throw new Error("No more pages");
-                let html = await response.text();
-
-                contentDiv.innerHTML += html; // Append new content
-                pageIndex++; // Increase index
-            } catch (error) {
-                console.log("No more pages to load.");
-            } finally {
-                loadingDiv.style.display = "none"; // Hide loading animation
-                isLoading = false;
+        function goFullscreen() {
+            let iframe = document.getElementById("gameFrame");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
             }
         }
-
-        // Detect scroll position
-        window.addEventListener("scroll", () => {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-                loadMoreContent();
-            }
-        });
-
-        // Load first page initially
-        loadMoreContent();
     </script>
 
+    <!-- More Games Section -->
+    <section class="p-6">
+        <h2 class="text-2xl font-bold text-center mb-4">More Games</h2>
+        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2 md:gap-3">
+            <!-- Sample Game Thumbnails -->
+            <a href="#" class="block text-center group">
+                <img src="https://doodlejump24.github.io/rs/imgs/pacman-game.jpg" alt="Game 1" 
+                    class="w-20 h-20 mx-auto rounded transition-transform duration-300 group-hover:scale-110">
+                <p class="mt-1 text-xs">Game 1</p>
+            </a>
+            <a href="#" class="block text-center group">
+                <img src="https://doodlejump24.github.io/rs/imgs/pacman-game.jpg" alt="Game 2" 
+                    class="w-20 h-20 mx-auto rounded transition-transform duration-300 group-hover:scale-110">
+                <p class="mt-1 text-xs">Game 2</p>
+            </a>
+            <a href="#" class="block text-center group">
+                <img src="https://doodlejump24.github.io/rs/imgs/pacman-game.jpg" alt="Game 3" 
+                    class="w-20 h-20 mx-auto rounded transition-transform duration-300 group-hover:scale-110">
+                <p class="mt-1 text-xs">Game 3</p>
+            </a>
+            <!-- Add more games dynamically -->
+        </div>
+    </section>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  let iframe = document.querySelector("iframe");
+
+  iframe.onload = function () {
+    let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+    if (iframeDoc) {
+      // Ads ke classes ya IDs
+      let adElements = iframeDoc.querySelectorAll(".adsbygoogle");
+
+      adElements.forEach(ad => ad.remove()); // Remove all ads
+      console.log("Ads removed from iframe!");
+    }
+  };
+});
+</script>
+    <!-- Footer -->
+    <footer class="text-center p-4 bg-gray-900 mt-4">
+        <p>&copy; 2024 GameSite. All rights reserved.</p>
+    </footer>
 </body>
 </html>
