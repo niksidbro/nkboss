@@ -1,0 +1,69 @@
+<div class="video-container">
+    <!-- YouTube Shorts Preview -->
+    <iframe id="gamePreview" 
+        src="https://www.youtube.com/embed/h0_12bkwScg?autoplay=1&mute=1&loop=1&playlist=h0_12bkwScg&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3" 
+        frameborder="0" allowfullscreen>
+    </iframe>
+
+    <!-- Play Now Button -->
+    <button class="play-now" onclick="loadGame()">Play Now</button>
+</div>
+
+<script>
+function loadGame() {
+    var iframe = document.getElementById('gamePreview');
+
+    // 🟢 Game ka actual link set karega (Apna game link daalo)
+    iframe.src = "https://classroom6x.gitlab.io/subway-surfers-monaco/";  
+
+    // 🟢 Interaction allow karega (ab game me buttons kaam karenge)
+    iframe.style.pointerEvents = "auto"; 
+
+    // 🟢 Game ka sound enable karega
+    iframe.removeAttribute("mute"); 
+
+    // 🟢 Zoom effect remove karega, taaki game properly dikhe
+    iframe.style.top = "0"; 
+    iframe.style.height = "100%"; 
+
+    // 🟢 Play Now button hide karega
+    document.querySelector('.play-now').style.display = 'none';  
+}
+</script>
+
+<style>
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: -40%; /* Preview ke time zoomed */
+    left: 0;
+    width: 100%;
+    height: 200%; /* Double height for cropping preview */
+    border: none;
+    filter: brightness(0.8);
+    pointer-events: none; /* Prevents interaction during preview */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+.play-now {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 10;
+    border-radius: 5px;
+}
+</style>
