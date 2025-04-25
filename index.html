@@ -22,7 +22,7 @@
   <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6" id="templateGallery"></div>
 
   <button onclick="generateImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
-  <canvas id="previewCanvas" width="600" height="600" class="mx-auto shadow-lg mt-6"></canvas>
+  <canvas id="previewCanvas" width="600" height="800" class="mx-auto shadow-lg mt-6"></canvas>
   <button onclick="downloadImage()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Download</button>
 
   <script>
@@ -63,27 +63,36 @@
       bgImg.src = selectedTemplate;
       bgImg.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
+        // Draw quote image on top portion
+        ctx.drawImage(bgImg, 0, 0, canvas.width, 600);
+
+        // Draw colored background for user info
+        ctx.fillStyle = '#facc15'; // Yellow background
+        ctx.fillRect(0, 600, canvas.width, 200);
 
         const reader = new FileReader();
         reader.onload = function (e) {
           const userImg = new Image();
           userImg.onload = () => {
+            // Draw circle user image on bottom area
             ctx.save();
             ctx.beginPath();
-            ctx.arc(100, 100, 60, 0, Math.PI * 2);
+            ctx.arc(canvas.width / 2, 670, 50, 0, Math.PI * 2);
             ctx.clip();
-            ctx.drawImage(userImg, 40, 40, 120, 120);
+            ctx.drawImage(userImg, (canvas.width / 2) - 50, 620, 100, 100);
             ctx.restore();
 
-            ctx.font = 'bold 28px sans-serif';
-            ctx.fillStyle = 'white';
+            // Draw user name below image
+            ctx.font = 'bold 26px sans-serif';
+            ctx.fillStyle = '#111827';
             ctx.textAlign = 'center';
-            ctx.fillText(name, canvas.width / 2, canvas.height - 60);
+            ctx.fillText(name, canvas.width / 2, 750);
 
+            // Branding
             ctx.font = 'bold 18px sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-            ctx.fillText('NikQuotes', canvas.width - 100, canvas.height - 30);
+            ctx.fillStyle = '#6b7280';
+            ctx.fillText('NikQuotes', canvas.width - 100, 790);
           };
           userImg.src = e.target.result;
         };
