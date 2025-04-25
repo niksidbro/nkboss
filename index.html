@@ -6,9 +6,9 @@
   <title>NikQuotes Generator</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    canvas { max-width: 100%; border-radius: 1rem; }
-    .template-img { cursor: pointer; border: 3px solid transparent; border-radius: 0.5rem; }
+    .template-img { cursor: pointer; border: 3px solid transparent; border-radius: 0.5rem; max-width: 100px; }
     .template-img.selected { border-color: #3b82f6; }
+    canvas { max-width: 100%; }
   </style>
 </head>
 <body class="bg-gray-100 text-center p-6">
@@ -19,97 +19,83 @@
     <input id="photoInput" type="file" accept="image/*" class="p-2" />
   </div>
 
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6" id="templateGallery">
-    <!-- Images will be inserted here dynamically -->
-  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6" id="templateGallery"></div>
 
   <button onclick="generateImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
   <canvas id="previewCanvas" width="600" height="600" class="mx-auto shadow-lg mt-6"></canvas>
   <button onclick="downloadImage()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Download</button>
 
   <script>
-    const templateGallery = document.getElementById('templateGallery');
     const templates = [
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7WNz0NddqUnTh3aZP6eVoNtczDlQFBH50qH4rzyPqV0dTh8INujkrwQuq8kQDNkaEQw9-9QWs3Dr4y-Vwcl2t-lO7_VNBBy-arS-eC2ckqk5IhJ9LEmAqAKxZeNMIflyPxH9UKbiACQUq/s1600/Royal+Attitude+Status+In+Marathi+%25284%2529.jpg',
-      'https://via.placeholder.com/600x600?text=Quote+2',
-      'https://via.placeholder.com/600x600?text=Quote+3',
-      'https://via.placeholder.com/600x600?text=Quote+4',
-      'https://via.placeholder.com/600x600?text=Quote+5'
+      'template2.jpg',
+      'template3.jpg',
+      'template4.jpg',
+      'template5.jpg'
     ];
 
     let selectedTemplate = null;
 
-    templates.forEach((url, index) => {
+    const gallery = document.getElementById('templateGallery');
+    templates.forEach(url => {
       const img = document.createElement('img');
       img.src = url;
       img.className = 'template-img';
-      img.onclick = () => selectTemplate(img, url);
-      templateGallery.appendChild(img);
+      img.onclick = () => {
+        document.querySelectorAll('.template-img').forEach(i => i.classList.remove('selected'));
+        img.classList.add('selected');
+        selectedTemplate = url;
+      };
+      gallery.appendChild(img);
     });
 
-    function selectTemplate(img, url) {
-      document.querySelectorAll('.template-img').forEach(i => i.classList.remove('selected'));
-      img.classList.add('selected');
-      selectedTemplate = url;
-    }
+    function generateImage() {
+      if (!selectedTemplate) return alert('Select a template image first.');
 
-    async function generateImage() {
-      if (!selectedTemplate) {
-        alert('Please select a template image.');
-        return;
-      }
-
-      const name = document.getElementById('nameInput').value;
+      const name = document.getElementById('nameInput').value.trim();
       const file = document.getElementById('photoInput').files[0];
+      if (!name || !file) return alert('Please enter name and upload a photo.');
+
       const canvas = document.getElementById('previewCanvas');
       const ctx = canvas.getContext('2d');
 
-      const bg = new Image();
-      bg.crossOrigin = 'anonymous';
-      bg.src = selectedTemplate;
-
-      bg.onload = () => {
+      const bgImg = new Image();
+      bgImg.src = selectedTemplate;
+      bgImg.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            const img = new Image();
-            img.onload = () => {
-              ctx.save();
-              ctx.beginPath();
-              ctx.arc(100, 100, 60, 0, Math.PI * 2);
-              ctx.clip();
-              ctx.drawImage(img, 40, 40, 120, 120);
-              ctx.restore();
-              drawText(ctx, name);
-            };
-            img.src = e.target.result;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const userImg = new Image();
+          userImg.onload = () => {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(100, 100, 60, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.drawImage(userImg, 40, 40, 120, 120);
+            ctx.restore();
+
+            ctx.font = 'bold 28px sans-serif';
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText(name, canvas.width / 2, canvas.height - 60);
+
+            ctx.font = 'bold 18px sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillText('NikQuotes', canvas.width - 100, canvas.height - 30);
           };
-          reader.readAsDataURL(file);
-        } else {
-          drawText(ctx, name);
-        }
+          userImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
       };
-    }
-
-    function drawText(ctx, name) {
-      ctx.font = 'bold 28px sans-serif';
-      ctx.fillStyle = 'white';
-      ctx.textAlign = 'center';
-      ctx.fillText(name, 300, 540);
-
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-      ctx.fillText('NikQuotes', 500, 580);
     }
 
     function downloadImage() {
       const canvas = document.getElementById('previewCanvas');
       const link = document.createElement('a');
       link.download = 'nikquote.png';
-      link.href = canvas.toDataURL('image/png');
+      link.href = canvas.toDataURL();
       link.click();
     }
   </script>
