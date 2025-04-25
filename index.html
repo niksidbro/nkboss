@@ -1,144 +1,95 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="HTTrack is an easy-to-use website mirror utility. It allows you to download a World Wide website from the Internet to a local directory,building recursively all structures, getting html, images, and other files from the server to your computer. Links are rebuiltrelatively so that you can freely browse to the local site (works with any browser). You can mirror several sites together so that you can jump from one toanother. You can, also, update an existing mirror site, or resume an interrupted download. The robot is fully configurable, with an integrated help" />
-	<meta name="keywords" content="httrack, HTTRACK, HTTrack, winhttrack, WINHTTRACK, WinHTTrack, offline browser, web mirror utility, aspirateur web, surf offline, web capture, www mirror utility, browse offline, local  site builder, website mirroring, aspirateur www, internet grabber, capture de site web, internet tool, hors connexion, unix, dos, windows 95, windows 98, solaris, ibm580, AIX 4.0, HTS, HTGet, web aspirator, web aspirateur, libre, GPL, GNU, free software" />
-	<title>Local index - HTTrack Website Copier</title>
-  <!-- Mirror and index made by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-	<style type="text/css">
-	<!--
-
-body {
-	margin: 0;  padding: 0;  margin-bottom: 15px;  margin-top: 8px;
-	background: #77b;
-}
-body, td {
-	font: 14px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	}
-
-#subTitle {
-	background: #000;  color: #fff;  padding: 4px;  font-weight: bold; 
-	}
-
-#siteNavigation a, #siteNavigation .current {
-	font-weight: bold;  color: #448;
-	}
-#siteNavigation a:link    { text-decoration: none; }
-#siteNavigation a:visited { text-decoration: none; }
-
-#siteNavigation .current { background-color: #ccd; }
-
-#siteNavigation a:hover   { text-decoration: none;  background-color: #fff;  color: #000; }
-#siteNavigation a:active  { text-decoration: none;  background-color: #ccc; }
-
-
-a:link    { text-decoration: underline;  color: #00f; }
-a:visited { text-decoration: underline;  color: #000; }
-a:hover   { text-decoration: underline;  color: #c00; }
-a:active  { text-decoration: underline; }
-
-#pageContent {
-	clear: both;
-	border-bottom: 6px solid #000;
-	padding: 10px;  padding-top: 20px;
-	line-height: 1.65em;
-	background-image: url(backblue.gif);
-	background-repeat: no-repeat;
-	background-position: top right;
-	}
-
-#pageContent, #siteNavigation {
-	background-color: #ccd;
-	}
-
-
-.imgLeft  { float: left;   margin-right: 10px;  margin-bottom: 10px; }
-.imgRight { float: right;  margin-left: 10px;   margin-bottom: 10px; }
-
-hr { height: 1px;  color: #000;  background-color: #000;  margin-bottom: 15px; }
-
-h1 { margin: 0;  font-weight: bold;  font-size: 2em; }
-h2 { margin: 0;  font-weight: bold;  font-size: 1.6em; }
-h3 { margin: 0;  font-weight: bold;  font-size: 1.3em; }
-h4 { margin: 0;  font-weight: bold;  font-size: 1.18em; }
-
-.blak { background-color: #000; }
-.hide { display: none; }
-.tableWidth { min-width: 400px; }
-
-.tblRegular       { border-collapse: collapse; }
-.tblRegular td    { padding: 6px;  background-image: url(fade.gif);  border: 2px solid #99c; }
-.tblHeaderColor, .tblHeaderColor td { background: #99c; }
-.tblNoBorder td   { border: 0; }
-
-
-// -->
-</style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NikQuotes Generator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    canvas { max-width: 100%; border-radius: 1rem; }
+  </style>
 </head>
+<body class="bg-gray-100 text-center p-6">
+  <h1 class="text-3xl font-bold mb-6">NikQuotes Image Generator</h1>
 
-<table width="76%" border="0" align="center" cellspacing="0" cellpadding="3" class="tableWidth">
-	<tr>
-	<td id="subTitle">HTTrack Website Copier - Open Source offline browser</td>
-	</tr>
-</table>
-<table width="76%" border="0" align="center" cellspacing="0" cellpadding="0" class="tableWidth">
-<tr class="blak">
-<td>
-	<table width="100%" border="0" align="center" cellspacing="1" cellpadding="0">
-	<tr>
-	<td colspan="6"> 
-		<table width="100%" border="0" align="center" cellspacing="0" cellpadding="10">
-		<tr> 
-		<td id="pageContent"> 
-<!-- ==================== End prologue ==================== -->
+  <div class="grid gap-4 mb-6">
+    <input id="nameInput" type="text" placeholder="Enter your name" class="p-2 rounded border" />
+    <input id="photoInput" type="file" accept="image/*" class="p-2" />
+    <select id="templateSelect" class="p-2 rounded border">
+      <option value="1">Template 1</option>
+      <option value="2">Template 2</option>
+      <option value="3">Template 3</option>
+    </select>
+    <button onclick="generateImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Generate</button>
+  </div>
 
-	<meta name="generator" content="HTTrack Website Copier/3.x">
-	<TITLE>Local index - HTTrack</TITLE>
-</HEAD>
-<BODY>
-<H1 ALIGN=Center>Index of locally available sites:</H1>
-	<TABLE BORDER="0" WIDTH="100%" CELLSPACING="1" CELLPADDING="0">
-		<TR>
-			<TD BACKGROUND="fade.gif">
-				&middot;
-					<A HREF="hanumanchalisas.com/index.html">
-						हनुमान चालीसा हिंदी में PDF - Hanuman Chalisa PDF
-					</A>		
-			</TD>
-		</TR>
-	</TABLE>
-	<BR>
-	<BR>
-	<BR>
-  	<H6 ALIGN="RIGHT">
-	<I>Mirror and index made by HTTrack Website Copier [XR&amp;CO'2008]</I>
-	</H6>
-	<!-- Mirror and index made by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-	<!-- Thanks for using HTTrack Website Copier! -->
-	<meta HTTP-EQUIV="Refresh" CONTENT="0; URL=hanumanchalisas.com/index.html">
+  <canvas id="previewCanvas" width="600" height="600" class="mx-auto shadow-lg"></canvas>
+  <button onclick="downloadImage()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded">Download</button>
 
+  <script>
+    const templates = {
+      1: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgm460ReF8i8RANCzrahncl5_AqZ3cvHCh7KdtQMohBb7FNCfpJRn_fumBnsAHZX74UzXH-Iq1cZ3oNxfwL7cc8XbW5V7hsDQ4K1kj37VvJKMe20mWQ0SKD0YKf4NencwzErm0Is-DpE004/s1600/Royal+Attitude+Status+In+Marathi+%25282%2529.jpg',
+      2: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiARk9kxYgceEVV2wMCMI9qLB_HZ85OFPihPnEB7wbp_40_MefWJOnWGEpOdwtjBeZMKA4wLndwcS7eE5mlLrf_3cPY2k-hBp9NhizQ4lzdEw_gpzVdMbd02GH3J3wAQvy4hle40ubLoeI/s1600/Royal+Attitude+Status+In+Marathi+%25283%2529.jpg',
+      3: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7WNz0NddqUnTh3aZP6eVoNtczDlQFBH50qH4rzyPqV0dTh8INujkrwQuq8kQDNkaEQw9-9QWs3Dr4y-Vwcl2t-lO7_VNBBy-arS-eC2ckqk5IhJ9LEmAqAKxZeNMIflyPxH9UKbiACQUq/s1600/Royal+Attitude+Status+In+Marathi+%25284%2529.jpg',
+    };
 
-<!-- ==================== Start epilogue ==================== -->
-		</td>
-		</tr>
-		</table>
-	</td>
-	</tr>
-	</table>
-</td>
-</tr>
-</table>
+    async function generateImage() {
+      const name = document.getElementById('nameInput').value;
+      const file = document.getElementById('photoInput').files[0];
+      const templateId = document.getElementById('templateSelect').value;
+      const canvas = document.getElementById('previewCanvas');
+      const ctx = canvas.getContext('2d');
 
-<table width="76%" border="0" align="center" valign="bottom" cellspacing="0" cellpadding="0">
-	<tr>
-	<td id="footer"><small>&copy; 2008 Xavier Roche & other contributors - Web Design: Leto Kauler.</small></td>
-	</tr>
-</table>
+      const bg = new Image();
+      bg.crossOrigin = 'anonymous';
+      bg.src = templates[templateId];
 
+      bg.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = new Image();
+            img.onload = () => {
+              ctx.save();
+              ctx.beginPath();
+              ctx.arc(100, 100, 60, 0, Math.PI * 2);
+              ctx.clip();
+              ctx.drawImage(img, 40, 40, 120, 120);
+              ctx.restore();
+
+              drawText(ctx, name);
+            };
+            img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        } else {
+          drawText(ctx, name);
+        }
+      };
+    }
+
+    function drawText(ctx, name) {
+      ctx.font = 'bold 28px sans-serif';
+      ctx.fillStyle = 'white';
+      ctx.textAlign = 'center';
+      ctx.fillText(name, 300, 540);
+
+      // Branding
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fillText('NikQuotes', 500, 580);
+    }
+
+    function downloadImage() {
+      const canvas = document.getElementById('previewCanvas');
+      const link = document.createElement('a');
+      link.download = 'nikquote.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
 </body>
-
 </html>
-
-
