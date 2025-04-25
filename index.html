@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NikQuotes Generator</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     .template-img { cursor: pointer; border: 3px solid transparent; border-radius: 0.5rem; max-width: 100px; }
     .template-img.selected { border-color: #3b82f6; }
@@ -40,6 +40,7 @@
     templates.forEach(url => {
       const img = document.createElement('img');
       img.src = url;
+      img.crossOrigin = 'anonymous';
       img.className = 'template-img';
       img.onclick = () => {
         document.querySelectorAll('.template-img').forEach(i => i.classList.remove('selected'));
@@ -60,39 +61,35 @@
       const ctx = canvas.getContext('2d');
 
       const bgImg = new Image();
+      bgImg.crossOrigin = 'anonymous';
       bgImg.src = selectedTemplate;
       bgImg.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw quote image on top portion
         ctx.drawImage(bgImg, 0, 0, canvas.width, 600);
 
-        // Draw colored background for user info
-        ctx.fillStyle = '#facc15'; // Yellow background
+        ctx.fillStyle = '#1f2937';
         ctx.fillRect(0, 600, canvas.width, 200);
 
         const reader = new FileReader();
         reader.onload = function (e) {
           const userImg = new Image();
+          userImg.crossOrigin = 'anonymous';
           userImg.onload = () => {
-            // Draw circle user image on bottom area
             ctx.save();
             ctx.beginPath();
             ctx.arc(canvas.width / 2, 670, 50, 0, Math.PI * 2);
             ctx.clip();
-            ctx.drawImage(userImg, (canvas.width / 2) - 50, 620, 100, 100);
+            ctx.drawImage(userImg, canvas.width / 2 - 50, 620, 100, 100);
             ctx.restore();
 
-            // Draw user name below image
-            ctx.font = 'bold 26px sans-serif';
-            ctx.fillStyle = '#111827';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
             ctx.fillText(name, canvas.width / 2, 750);
 
-            // Branding
-            ctx.font = 'bold 18px sans-serif';
-            ctx.fillStyle = '#6b7280';
-            ctx.fillText('NikQuotes', canvas.width - 100, 790);
+            ctx.font = 'bold 16px sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            ctx.fillText('NikQuotes', canvas.width - 80, 785);
           };
           userImg.src = e.target.result;
         };
@@ -102,10 +99,12 @@
 
     function downloadImage() {
       const canvas = document.getElementById('previewCanvas');
-      const link = document.createElement('a');
-      link.download = 'nikquote.png';
-      link.href = canvas.toDataURL();
-      link.click();
+      canvas.toBlob(function(blob) {
+        const link = document.createElement('a');
+        link.download = 'nikquote.png';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+      }, 'image/png');
     }
   </script>
 </body>
