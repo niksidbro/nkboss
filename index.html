@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NikQuotes Generator</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     .template-img { cursor: pointer; border: 3px solid transparent; border-radius: 0.5rem; max-width: 100px; }
     .template-img.selected { border-color: #3b82f6; }
@@ -27,11 +27,11 @@
 
   <script>
     const templates = [
-      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7WNz0NddqUnTh3aZP6eVoNtczDlQFBH50qH4rzyPqV0dTh8INujkrwQuq8kQDNkaEQw9-9QWs3Dr4y-Vwcl2t-lO7_VNBBy-arS-eC2ckqk5IhJ9LEmAqAKxZeNMIflyPxH9UKbiACQUq/s1600/Royal+Attitude+Status+In+Marathi+%25284%2529.jpg',  // Placeholder image for CORS
-      'https://via.placeholder.com/600x400.png?text=Template+2',
-      'https://via.placeholder.com/600x400.png?text=Template+3',
-      'https://via.placeholder.com/600x400.png?text=Template+4',
-      'https://via.placeholder.com/600x400.png?text=Template+5'
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7WNz0NddqUnTh3aZP6eVoNtczDlQFBH50qH4rzyPqV0dTh8INujkrwQuq8kQDNkaEQw9-9QWs3Dr4y-Vwcl2t-lO7_VNBBy-arS-eC2ckqk5IhJ9LEmAqAKxZeNMIflyPxH9UKbiACQUq/s1600/Royal+Attitude+Status+In+Marathi+%25284%2529.jpg',
+      'template2.jpg',
+      'template3.jpg',
+      'template4.jpg',
+      'template5.jpg'
     ];
 
     let selectedTemplate = null;
@@ -40,7 +40,6 @@
     templates.forEach(url => {
       const img = document.createElement('img');
       img.src = url;
-      img.crossOrigin = 'anonymous';
       img.className = 'template-img';
       img.onclick = () => {
         document.querySelectorAll('.template-img').forEach(i => i.classList.remove('selected'));
@@ -61,19 +60,18 @@
       const ctx = canvas.getContext('2d');
 
       const bgImg = new Image();
-      bgImg.crossOrigin = 'anonymous';
       bgImg.src = selectedTemplate;
       bgImg.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(bgImg, 0, 0, canvas.width, 600);
+        ctx.drawImage(bgImg, 0, 0, canvas.width, 600); // Quote image on top
 
-        ctx.fillStyle = '#1f2937';
+        // Draw bottom section background
+        ctx.fillStyle = '#1f2937'; // dark gray
         ctx.fillRect(0, 600, canvas.width, 200);
 
         const reader = new FileReader();
         reader.onload = function (e) {
           const userImg = new Image();
-          userImg.crossOrigin = 'anonymous';
           userImg.onload = () => {
             ctx.save();
             ctx.beginPath();
